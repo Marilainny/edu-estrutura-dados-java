@@ -112,6 +112,7 @@ public class TestePilha {
 			System.out.println("Destino:  "+destino);
 
 			torreDeHanoi(n-1, auxiliar, destino, original);	
+
 		}
 	}
 	/*
@@ -233,10 +234,6 @@ public class TestePilha {
 		}		
 		return numeroBase;		
 	}
-	/*
-	 * Método desafio torre de Hanoi, método recursivo no Java;
-	 */
-
 
 }
 
