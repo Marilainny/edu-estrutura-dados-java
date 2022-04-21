@@ -3,7 +3,7 @@ package com.java.estruturadados.estrutura;
 /**Classe estatica com estrutura LIFO.
  * @author Marilainny Martins da Siva
  * @version 1.00
- * @since 14.04.22
+ * @since 14.04.22 release - 21.04.22 
  */
 /*
  * Classe EstruturaEstatica comportamento LIFO
@@ -20,11 +20,16 @@ public class EstruturaEstatica <T>{
 
 	protected int tamanho;
 
+	/*
+	 * Construtor que aumenta a capacidade;
+	 */
 	public EstruturaEstatica(int capacidade) {
 		this.elementos = (T[]) new Object[capacidade];
 		this.tamanho = 0;		
 	}
-
+	/*
+	 * Construtor que inicia com uma capacidade determinada;
+	 */
 	public EstruturaEstatica() {
 		this(10);
 	}
@@ -56,7 +61,7 @@ public class EstruturaEstatica <T>{
 	 *  retornar o elemento com tamanho - 1 posição;
 	 *  
 	 */
-	public T desempilha() {
+	public T desempilhar() {
 		if(this.estaVazia()) {
 			return null;			
 		}else {
@@ -64,11 +69,13 @@ public class EstruturaEstatica <T>{
 		}		
 	}
 
-	/*Método para aumentar a capacidade
+	/*
+	 * Método para aumentar a capacidade
 	 * 	verifica se o tamanho é igual a quantidade de elementos;
 	 *  caso true, cria um novo objeto que recebe a capacidade de elementos elevada a um fator;
 	 *  o for insere os elementos no novo objeto;
-	 *  elementos recebe os elementos do novo objeto*/
+	 *  elementos recebe os elementos do novo objeto
+	 */
 	protected void aumentaCapacidade() {
 		if(this.tamanho == this.elementos.length) { 
 			T[] newElementos = (T[]) new Object[this.elementos.length * 2];
@@ -80,12 +87,14 @@ public class EstruturaEstatica <T>{
 		}
 	}
 
-	/*Método adiciona elementos
+	/*
+	 * Método adiciona elementos
 	 * 	verifica a capacidade, chamando o método aumentaCapacidade();
 	 *  verifica se a capacidade do tamanho é menor que o tamanho dos elementos;
 	 *  o vetor de elementos inicia com o tamanho atual, recebe o elemento;
 	 *  atualiza o tamanho;
-	 *  return true*/
+	 *  return true
+	 */
 	public boolean adiciona(T elemento){
 		this.aumentaCapacidade();		
 		if (this.tamanho < this.elementos.length) {		
@@ -93,17 +102,19 @@ public class EstruturaEstatica <T>{
 			this.tamanho++;			
 			return true;
 		}
-		
+
 		return false;
 	}
 
-	/*Método adiciona elemento em uma posição especifica.
+	/*
+	 * Método adiciona elemento em uma posição especifica.
 	 * 	verifica a capacidade, chamando o método aumentaCapacidade();
 	 *  verifica se posição é maior ou igual a zero e posição menor que tamanho;
 	 *  caso false lança uma Exception;
 	 *  o for decrementa o tamanho, enquanto i for menor que o tamanho do elemento, ele decrementa;
 	 *  elementos recebe i+1 posição, acrescenta ao elementos.
-	 *  return false caso a posição for inválida*/
+	 *  return false caso a posição for inválida
+	 */
 	public boolean adiciona(int posicao, T elemento) {
 		this.aumentaCapacidade(); 
 		if (!(posicao >=0 && posicao < tamanho)) {
@@ -112,29 +123,27 @@ public class EstruturaEstatica <T>{
 		for (int i = this.tamanho-1; i >= elementos.length; i--) {
 			this.elementos[i+1] = this.elementos[i];
 		}
-		
+
 		return false;
 	}
 
 	public String toString() {
-		
-		//construtor builder para impressão dos dados formatado.
+
+		/*
+		 * Construtor builder para impressão dos dados formatado;
+		 * 	tamanho vai até a penultima interação;
+		 * 	verificar se tem dados para imprimir;
+		 */
 		StringBuilder vetorElementos = new StringBuilder(); 
 
-		vetorElementos.append("[");
-		
-		//tamanho vai até a penultima interação.
+		vetorElementos.append("[");			
 		for (int i = 0; i < this.tamanho-1; i++) { 
 			vetorElementos.append(this.elementos[i]);
-			vetorElementos.append(", ");
-
+			vetorElementos.append(", ");			
 		}
-
-		if (this.tamanho>0){//verificar se tem dados para imprimir
-			vetorElementos.append(this.elementos[this.tamanho-1]); //acessando a última posição.
-
+		if (this.tamanho>0){
+			vetorElementos.append(this.elementos[this.tamanho-1]); 
 		}
-
 		vetorElementos.append("]");
 		return vetorElementos.toString();
 	}
